@@ -6,11 +6,10 @@ const Single = (props) => {
       <div className="card teal darken-1">
         <div className="card-content white-text">
           <span className="card-title">{props.note.title}</span>
-          <textarea value={props.note.details} 
-          onChange={(evt) => props.updateNote({id: props.note.id, details: evt.target.value })} />
+          <p>{props.note.details}</p>
         </div>
         <div className="card-action">
-          <a onClick={() => props.removeNote(props.note.id)}>Delete</a>
+          <a onClick={() => props.deleteNote(props.note.id)}>Delete</a>
         </div>
       </div>
     </li>
