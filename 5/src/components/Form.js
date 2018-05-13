@@ -11,15 +11,24 @@ export default class Form extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit} className="col s12">
+        <form onSubmit={event => {
+            event.preventDefault();
+            const note = {
+              id: require('crypto').randomBytes(5).toString('hex'),
+              title: this.refs.title.value,
+              details: this.refs.details.value
+            };
+            this.refs.title.value = '';
+            this.refs.details.value = '';
+            this.props.addNewNote(note);
+          } } className="col s12" >
           <div className="row">
             <div className="input-field col s3">
               <input 
                 id="title"
                 name="currentTitle"
                 type="text" 
-                value={this.props.currentTitle} 
-                onChange={this.props.handleChange} 
+                ref="title"
                 className="validate"/>
                 <label htmlFor="title">Title</label>
             </div>
@@ -28,8 +37,7 @@ export default class Form extends Component {
                 id="details"
                 name="currentDetails"
                 type="text" 
-                value={this.props.currentDetails} 
-                onChange={this.props.handleChange}
+                ref="details"
                 className="validate" />
               <label htmlFor="details">Details</label>
             </div>
