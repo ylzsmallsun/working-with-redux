@@ -1,7 +1,7 @@
 import notesRef from '../config/firebase.js';
 import _ from 'lodash';
 
-export const getInitialNotes = () => async dispatch => {
+export const fetchNotes = () => async dispatch => {
     notesRef.on("value", snapshot => {
         const fbStore = snapshot.val();
         const store = _.map(fbStore, (value, id) => {
@@ -18,19 +18,13 @@ export const getInitialNotes = () => async dispatch => {
     });
 };
 
-export const addNewNote = (note) => {
-    return {
-        type: 'ADD_NOTE',
-        note
-    }
-}
+export const addNewNote = note => async dispatch => {
+    notesRef.push(note, response => response);
+};
 
-export const removeNote = (id) => {
-    return {
-        type: 'REMOVE_NOTE',
-        id
-    }
-}
+export const removeNote = id => async dispatch => {
+    notesRef.child(id).remove();
+};
 
 export const updateNote = (note) => {
     return {

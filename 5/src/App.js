@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Header from './components/Header';
 import Grid from './components/Grid';
 import Form from './components/Form';
-import  { getInitialNotes, addNewNote, removeNote, updateNote } from './store/actions';
+import  { fetchNotes, addNewNote, removeNote, updateNote } from './store/actions';
 
 
 // styles in-component - pay attention to the syntax
@@ -29,8 +29,8 @@ class App extends Component {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getInitialNotes: () => {
-      dispatch(getInitialNotes())
+    fetchNotes: () => {
+      dispatch(fetchNotes())
     },
     addNewNote: (note) => {
       dispatch(addNewNote(note))

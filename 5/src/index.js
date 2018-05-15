@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import configureStore from './store/store';
-import { getInitialNotes } from './store/actions';
+import { fetchNotes } from './store/actions';
 import './index.css';
 
 const store = configureStore();
-store.dispatch(getInitialNotes());
+store.dispatch(fetchNotes());
 
 ReactDOM.render(
     <Provider store={store}>
