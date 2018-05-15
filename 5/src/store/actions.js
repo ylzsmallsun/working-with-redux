@@ -1,8 +1,22 @@
-export const getInitialNotes = () => {
-    return {
-        type: 'GET_NOTES'
-    }
-}
+import notesRef from '../config/firebase.js';
+import _ from 'lodash';
+
+export const getInitialNotes = () => async dispatch => {
+    notesRef.on("value", snapshot => {
+        const fbStore = snapshot.val();
+        const store = _.map(fbStore, (value, id) => {
+            return {
+                id: id,
+                title: value.title,
+                details: value.details
+            }
+        });
+        dispatch({
+            type: 'GET_NOTES',
+            payload: store
+        });
+    });
+};
 
 export const addNewNote = (note) => {
     return {

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import configureStore from './store/store';
 import { getInitialNotes } from './store/actions';
-import mystyle from './index.css';
+import './index.css';
 
 const store = configureStore();
 store.dispatch(getInitialNotes());

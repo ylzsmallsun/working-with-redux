@@ -1,16 +1,6 @@
+
 const initialState = {
-    notes: [
-        {
-            id: '27812b',
-            title: 'An example note',
-            details: 'This is an example of a note'
-        },
-        {
-            id: '278922',
-            title: 'Another example note',
-            details: 'This is an example of a note...again!'
-        }
-    ],
+    notes: [],
     name: 'Smallsun'
 }
 
@@ -37,10 +27,11 @@ export default (state = initialState, action) => {
                     }  
                 })
             }
-        case 'GET_NOTES':
+        case 'GET_NOTES': 
             return {
-                ...state
-            }
+                ...state,
+                notes: action.payload
+            }  
         default:
             return state
     }
