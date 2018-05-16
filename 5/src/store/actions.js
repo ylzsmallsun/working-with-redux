@@ -26,9 +26,6 @@ export const removeNote = id => async dispatch => {
     notesRef.child(id).remove();
 };
 
-export const updateNote = (note) => {
-    return {
-        type: 'UPDATE_NOTE',
-        note
-    }
+export const updateNote = note => async dispatch=> {
+    notesRef.child(note.id).update({ details: note.details });
 }
