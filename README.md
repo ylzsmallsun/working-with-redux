@@ -5,3 +5,5 @@ These are the exercise files for O'reilly's React working with redux course.
 - Open the folder of the video in question (*The video is always the beginning state*)
 - `$ npm install` or `$ yarn`
 - `$ npm start` or `$ yarn start`
+
+博客：https://www.jianshu.com/p/917dded33ca2
