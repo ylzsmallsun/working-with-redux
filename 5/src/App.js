@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
-import Grid from './components/Grid';
-import Form from './components/Form';
+import Page1 from './components/Page1';
+import Page2 from './components/Page2';
+import Page3 from './components/Page3';
+import Whoops404 from './components/errorPage';
 import  { fetchNotes, addNewNote, removeNote, updateNote } from './store/actions';
 
 
@@ -19,11 +22,26 @@ const styles = {
 class App extends Component {
   render() {
     return (
-      <div style={styles}>
-        <Header name={this.props.name} />
-        <Form addNewNote={this.props.addNewNote} />
-        <Grid notes={this.props.notes} removeNote={this.props.removeNote} updateNote={this.props.updateNote} />
-      </div>
+      <Router>
+        <div style={styles}>
+          <Header name={this.props.name} />
+          <Switch>
+            <Route exact path='/' render={(props) => (
+              <Page1
+              addNewNote={this.props.addNewNote} 
+              notes={this.props.notes}
+              removeNote={this.props.removeNote}
+              updateNote={this.props.updateNote}
+              />
+            )} />
+            <Route path='/page2' component={Page2} />
+            <Route path='/page3' component={Page3} />
+            <Route component={Whoops404} />
+          </Switch>
+          {/* <Form addNewNote={this.props.addNewNote} />
+          <Grid notes={this.props.notes} removeNote={this.props.removeNote} updateNote={this.props.updateNote} /> */}
+        </div>
+      </Router>
     );
   }
 }
